@@ -3,6 +3,9 @@
   padding: 5px 10px 5px 10px;
   text-align: center;
   margin-bottom: 0; }
+  .button-padding {
+    padding-top: 10px;
+    padding-bottom: 10px; }
   .button_blue {
     background-color: #2ddaff; }
   .button_red {
@@ -20,6 +23,17 @@
 .font_white {
   color: white; }
 
+.input {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px; }
+  .input-largeFont {
+    font-size: 18px; }
+  .input_gray {
+    border: 3px solid #9a969a; }
+  .input_blue {
+    border: 3px solid #2ddaff; }
+
 .header {
   background-color: #2ddaff;
   color: white;
@@ -28,8 +42,7 @@
   margin-bottom: 50px; }
   .header-title {
     font-size: 35px;
-    font-weight: bold;
-    text-align: center; }
+    font-weight: bold; }
   .header-dropDown {
     text-align: center; }
 
@@ -41,3 +54,9 @@
 .vacant-row {
   padding-top: 10px;
   padding-bottom: 10px; }
+
+.form-title {
+  text-align: center;
+  color: #9a969a;
+  padding-bottom: 30px;
+  font-size: 40px; }
