@@ -1,5 +1,7 @@
 $mainColor: #2ddaff
 $secondColor: #9a969a
+$acceptColor: rgb(132, 206, 26)
+$declineColor: rgb(237, 99, 44)
 
 .button
     width: 100%
@@ -8,6 +10,10 @@ $secondColor: #9a969a
     margin-bottom: 0
     &_blue
         background-color: $mainColor
+    &_red
+        background-color: $declineColor
+    &_green
+        background-color: $acceptColor
     &_radius
         border-radius: 10px
 .font

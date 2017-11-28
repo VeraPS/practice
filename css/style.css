@@ -5,6 +5,10 @@
   margin-bottom: 0; }
   .button_blue {
     background-color: #2ddaff; }
+  .button_red {
+    background-color: #ed632c; }
+  .button_green {
+    background-color: #84ce1a; }
   .button_radius {
     border-radius: 10px; }
 
