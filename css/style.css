@@ -1,9 +1,8 @@
 .button-blue {
-  color: white;
   background-color: #2ddaff;
   width: 100%;
   padding: 5px 10px 5px 10px;
-  text-align: right; }
+  text-align: center; }
   .button-blue_radius {
     border-radius: 10px; }
 
@@ -12,6 +11,8 @@
   margin-bottom: 0; }
   .font-bold_gray {
     color: #9a969a; }
+  .font-bold_white {
+    color: white; }
 
 .header {
   background-color: #2ddaff;
@@ -34,5 +35,3 @@
 .vacant-row {
   padding-top: 10px;
   padding-bottom: 10px; }
-  .vacant-row-buttonContent {
-    text-align: right; }
