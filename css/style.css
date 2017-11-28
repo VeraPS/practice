@@ -6,6 +6,8 @@
   .button-padding {
     padding-top: 10px;
     padding-bottom: 10px; }
+  .button-margin {
+    margin-bottom: 30px; }
   .button_blue {
     background-color: #2ddaff; }
   .button_red {
