@@ -1,3 +1,38 @@
+.button-blue {
+  color: white;
+  background-color: #2ddaff;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  text-align: right; }
+  .button-blue_radius {
+    border-radius: 10px; }
+
+.font-bold {
+  font-weight: bold;
+  margin-bottom: 0; }
+  .font-bold_gray {
+    color: #9a969a; }
+
 .header {
-  background-color: #ffff00;
-  color: #000000; }
+  background-color: #2ddaff;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 50px; }
+  .header-title {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center; }
+  .header-dropDown {
+    text-align: center; }
+
+.vacant-search {
+  width: 100%;
+  border: 4px solid #9a969a;
+  border-radius: 15px;
+  margin-bottom: 20px; }
+.vacant-row {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+  .vacant-row-buttonContent {
+    text-align: right; }
