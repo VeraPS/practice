@@ -62,3 +62,38 @@
   color: #9a969a;
   padding-bottom: 30px;
   font-size: 40px; }
+
+.loginForm-input {
+  width: 100% !important;
+  border: none;
+  border-bottom: 3px #2ddaff solid; }
+.loginForm-row {
+  margin: 10px 0 10px 0; }
+.loginForm-board {
+  background-color: white;
+  width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  z-index: 100;
+  position: relative;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+.loginForm-title {
+  color: #2ddaff; }
+.loginForm-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85); }
+.loginForm-discription {
+  color: #9a969a;
+  margin-bottom: 10px; }
+.loginForm-checkBox > input {
+  margin-right: 10px;
+  border-radius: 120px; }
