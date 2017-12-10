@@ -1,7 +1,16 @@
 <?php 
-include ("/php/config.php"); 
-$db = mysql_connect("practice","root","");
-mysql_select_db("practice_dvfu",$db);
+
+    //Поключение
+	$user = "root";
+	$pass = "root";
+	$dbName = "practice_dvfu";
+	
+	try {
+		$dbh = new PDO('mysql:host=localhost;dbname='.$dbName.';charset=utf8', $user, $pass);
+	} catch (PDOException $e) {
+		die('Подключение не удалось: ' . $e->getMessage());
+	}
+
 //|| die(mysql_error())
 if (($_POST['login']) && ($_POST['pass'])){
 		$login = trim ( $_POST['login'] );
