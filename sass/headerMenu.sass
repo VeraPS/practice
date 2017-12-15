@@ -1,0 +1,32 @@
+.headerMenu
+    ul 
+        position: relative
+        margin: 0
+        padding: 0
+        background-color: $mainColor
+        border: $border solid white
+        li
+            padding: 10px
+        > li:hover
+            background-color: #f96
+        ul > li:hover
+            background-color: #69e
+        li, .headerMenu ul
+            display: inline-block
+        ul
+            display: none
+            position: absolute
+            background-color: #369
+            margin-top: 10px
+            margin-left: -10px
+        a
+            color: #fff
+            text-decoration: none
+        ul a
+            color: #fff
+            text-decoration: none
+    li:hover 
+        ul
+            display: block
+        li
+            display: block
