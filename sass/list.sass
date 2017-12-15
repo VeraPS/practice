@@ -1,0 +1,45 @@
+
+
+/* скрываем чекбоксы и блоки с содержанием */
+.hidenRow,
+.hidenRow + label ~ div 
+    display: none
+
+/* вид текста label */
+.hidenRow + label 
+    margin: 0
+    padding: 0
+    color: green
+    cursor: pointer
+    display: inline-block
+
+/* вид текста label при активном переключателе */
+.hidenRow:checked + label 
+    color: red
+    border-bottom: 0
+
+/* когда чекбокс активен показываем блоки с содержанием  */
+.hidenRow:checked + label + div 
+    display: block 
+    background: #efefef
+    box-shadow: inset 3px 3px 10px #7d8e8f
+    margin-left: 20px
+    padding: 10px
+
+
+.hidenRow + label:before 
+    background-color: #1e90ff
+    color: #fff
+    content: "\002B"
+    display: block
+    float: left
+    font-size: 14px 
+    font-weight: bold
+    height: 16px
+    line-height: 16px
+    margin: 3px 5px
+    text-align: center
+    width: 16px
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%
+    border-radius: 50%
