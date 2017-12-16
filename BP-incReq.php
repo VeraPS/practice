@@ -92,5 +92,5 @@
         </div>
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
-    </body>
+    <?php @include 'php/footer.php'?></body>
 </html>

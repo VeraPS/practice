@@ -71,5 +71,5 @@
             
             
         </div>
-    </body>
+    <?php @include 'php/footer.php'?></body>
 </html>
