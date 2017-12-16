@@ -1,22 +1,27 @@
 .headerMenu
+    width: 100%
     ul 
         position: relative
         margin: 0
         padding: 0
         background-color: $mainColor
+        width: 100%
         border: $border solid white
+        border-radius: 10px
         li
             padding: 10px
+            width: 100%
+            border: 1px solid white
         > li:hover
-            background-color: #f96
+            // background-color: $secondColor
         ul > li:hover
-            background-color: #69e
+            background-color: $secondColor
         li, .headerMenu ul
             display: inline-block
         ul
             display: none
             position: absolute
-            background-color: #369
+            background-color: $mainColor
             margin-top: 10px
             margin-left: -10px
         a

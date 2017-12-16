@@ -3,37 +3,88 @@
     function getHeaderMenu($typeOfMenu) {
         switch ($typeOfMenu) {
             case 'adminMenu':
-                echo'
-                <nav class="headerMenu">
-                    <ul>
-                        <li>
-                            <a href="#">Explicabo?</a>
-        
-                            <ul>
-                                <li>
-                                    <a href="#">Lorem.2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Eveniet.2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Omnis.2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Beatae.2</a>
-                                </li>
-                            </ul>
-        
-                        </li>
-                    </ul>
-                </nav>
-                ';
+                // echo'
+                //     <nav class="headerMenu small-12 medium-4 large-4 cel">
+                //         <ul>
+                //             <li>
+                //                 <a href="#">Меню</a>
+            
+                //                 <ul>
+                //                     <li>
+                //                         <a href="#">Личный кабинет</a>
+                //                     </li>
+                //                     <li>
+                //                         <a href="#">Список вакансий</a>
+                //                     </li>
+                //                     <li>
+                //                         <a href="#">Приглашения на практику</a>
+                //                     </li>
+                //                     <li>
+                //                         <a href="#">Статус заявок</a>
+                //                     </li>
+                //                 </ul>
+            
+                //             </li>
+                //         </ul>
+                //     </nav>
+                // ';
+                    echo 'Я хз че у админа';
                 break;
             case 'bpMenu':
-                echo'bpMenu';
+                echo'
+                    <nav class="headerMenu small-12 medium-4 large-4 cel">
+                        <ul>
+                            <li>
+                                <a href="#">Меню</a>
+            
+                                <ul>
+                                    <li>
+                                        <a href="#">Личный кабинет</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Входящие заявки</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Исходящие заявки</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Список студентов</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Принятые студенты</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                ';
                 break;
             case 'studentMenu':
-                echo'studentMenu';
+                echo'
+                    <nav class="headerMenu small-12 medium-4 large-4 cel">
+                        <ul>
+                            <li>
+                                <a href="#">Меню</a>
+            
+                                <ul>
+                                    <li>
+                                        <a href="#">Личный кабинет</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Список вакансий</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Приглашения на практику</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Статус заявок</a>
+                                    </li>
+                                </ul>
+            
+                            </li>
+                        </ul>
+                    </nav>
+                ';
                 break;
             default:
                 echo 'ERROR KEY';

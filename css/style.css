@@ -49,7 +49,7 @@
   .header_noMargin {
     margin: 0; }
   .header_marginTop {
-    margin-top: 50px; }
+    margin-top: 150px; }
   .header-title {
     font-size: 35px;
     font-weight: bold; }
@@ -145,36 +145,40 @@
   margin-right: 10px;
   border-radius: 120px; }
 
-.headerMenu ul {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  background-color: #2ddaff;
-  border: 3px solid white; }
-  .headerMenu ul li {
-    padding: 10px; }
-  .headerMenu ul > li:hover {
-    background-color: #f96; }
-  .headerMenu ul ul > li:hover {
-    background-color: #69e; }
-  .headerMenu ul li, .headerMenu ul .headerMenu ul {
-    display: inline-block; }
-  .headerMenu ul ul {
-    display: none;
-    position: absolute;
-    background-color: #369;
-    margin-top: 10px;
-    margin-left: -10px; }
-  .headerMenu ul a {
-    color: #fff;
-    text-decoration: none; }
-  .headerMenu ul ul a {
-    color: #fff;
-    text-decoration: none; }
-.headerMenu li:hover ul {
-  display: block; }
-.headerMenu li:hover li {
-  display: block; }
+.headerMenu {
+  width: 100%; }
+  .headerMenu ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: #2ddaff;
+    width: 100%;
+    border: 3px solid white;
+    border-radius: 10px; }
+    .headerMenu ul li {
+      padding: 10px;
+      width: 100%;
+      border: 1px solid white; }
+    .headerMenu ul ul > li:hover {
+      background-color: #9a969a; }
+    .headerMenu ul li, .headerMenu ul .headerMenu ul {
+      display: inline-block; }
+    .headerMenu ul ul {
+      display: none;
+      position: absolute;
+      background-color: #2ddaff;
+      margin-top: 10px;
+      margin-left: -10px; }
+    .headerMenu ul a {
+      color: #fff;
+      text-decoration: none; }
+    .headerMenu ul ul a {
+      color: #fff;
+      text-decoration: none; }
+  .headerMenu li:hover ul {
+    display: block; }
+  .headerMenu li:hover li {
+    display: block; }
 
 /* скрываем чекбоксы и блоки с содержанием */
 .hidenRow,
