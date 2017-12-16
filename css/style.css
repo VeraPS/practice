@@ -17,6 +17,9 @@
     background-color: #84ce1a; }
   .button_radius {
     border-radius: 10px; }
+  .button_standartWidth {
+    width: 300px;
+    margin: 0 auto; }
 
 .font_bold {
   font-weight: bold;
@@ -69,11 +72,35 @@
 .vacant-content-hide {
   display: none; }
 
+.form-container-center {
+  text-align: center; }
 .form-title {
   text-align: center;
   color: #9a969a;
   padding-bottom: 30px;
   font-size: 40px; }
+  .form-title_blue {
+    color: #2ddaff; }
+  .form-title_underline {
+    text-decoration: underline; }
+.form-subtitle {
+  color: #9a969a;
+  font-size: 25px;
+  margin-bottom: 10px; }
+  .form-subtitle_bold {
+    font-weight: bold; }
+  .form-subtitle_rightSide {
+    float: right; }
+.form-text {
+  color: #9a969a;
+  margin-bottom: 10px; }
+  .form-text_bold {
+    font-weight: bold; }
+.form-img {
+  height: 350px; }
+  .form-img-container {
+    text-align: center;
+    margin-bottom: 40px; }
 
 .loginForm-input {
   width: 100% !important;

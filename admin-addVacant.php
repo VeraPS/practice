@@ -14,6 +14,10 @@
             <div class="grid-container">
                 <div class="grid-x grid-margin-x">
                     <div class="small-12 medium-8 large-8 cell header-title">Практика ДВФУ</div>
+                    <?php
+                        @include 'php/header.php';
+                        getHeaderMenu('adminMenu');
+                    ?>
                 </div>
             </div>
         </div>
