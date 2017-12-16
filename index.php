@@ -5,9 +5,9 @@
 	if (($_POST['login']) && ($_POST['pass'])){
 		$login = trim ( $_POST['login'] );
 		$pass = trim ( $_POST['pass'] );
-		$b_count = getValue("SELECT COUNT(*) FROM users_dvfu WHERE users_dvfu.login = '".$login."' AND users_dvfu.pass = '".$pass."'", 0);
+		$b_count = getValue("SELECT COUNT(*) FROM users_dvfu_db WHERE users_dvfu_db.login = '".$login."' AND users_dvfu_db.pass = '".$pass."'", 0);
 		if ($b_count>0) {
-			$role = getValue("SELECT role FROM users_dvfu WHERE users_dvfu.login = '".$login."' AND users_dvfu.pass = '".$pass."'", 0);	
+			$role = getValue("SELECT role FROM users_dvfu_db WHERE users_dvfu_db.login = '".$login."' AND users_dvfu_db.pass = '".$pass."'", 0);	
 			switch ($role) {
 				case 0:
 					goToUrl('admin-mainPage.php');
