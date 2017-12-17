@@ -1,31 +1,28 @@
 <?php 
-	@include 'php/config.php';
-	@include 'php/extension.php';
+	require_once('php/rb-init.php');
 
 	if (($_POST['login']) && ($_POST['pass'])){
 		$login = trim ( $_POST['login'] );
 		$pass = trim ( $_POST['pass'] );
-		$b_count = getValue("SELECT COUNT(*) FROM users_dvfu WHERE users_dvfu.login = '".$login."' AND users_dvfu.pass = '".$pass."'", 0);
-		if ($b_count>0) {
-			$role = getValue("SELECT role FROM users_dvfu WHERE users_dvfu.login = '".$login."' AND users_dvfu.pass = '".$pass."'", 0);	
-			switch ($role) {
-				case 0:
-					goToUrl('admin-mainPage.php');
-					break;
-				case 1:
-					goToUrl('student-personalProfile.php');
-					break;
-				case 2:
-					getAlert('Страница преподавателя');
-					break;
-				case 3:
-					goToUrl('BP-personalProfile.php');
-					break;
+		$save = $_POST['save'];
+		$user_id = R::getCell('SELECT u.id FROM users_dvfu_db u WHERE u.login = :login AND u.pass = :pass', [':login' => $login, ':pass' => $pass]);
+		if ($user_id) {
+			if ($save) {
+
 			}
-		}	
-		else{ 
+			else {
+
+			}
+			
+			$_SESSION = array();
+			$_SESSION['logged_user_id'] = $user_id;
+			
+			//затычка для теста студентов
+			goToUrl('student-personalProfile.php');
+			//=================
+		}
+		else {
 			getAlert('Зарегестрируйтесь в системе ДВФУ');
-			goToUrl('index.php');
 		}
 	}
 ?>
@@ -65,7 +62,7 @@
 						<input class="loginForm-input" type="password" name='pass'>
 					</div>
 
-					<p class="loginForm-discription loginForm-checkBox"><input type="checkbox">Запомнить меня</p>
+					<p class="loginForm-discription loginForm-checkBox"><input type="checkbox"  name='save'>Запомнить меня</p>
 					<div class="large-offset-9 large-3 cell">
 						<input class="button button-padding button-blue" type='submit' class="secondary button" name='submit' value='Войти'>
 					</div>
@@ -220,6 +217,7 @@
 
 
 
-<?php @include 'php/footer.php'?></body>
+<?php @include 'php/footer.php'?>
+</body>
 
 </html>

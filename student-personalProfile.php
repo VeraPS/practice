@@ -1,3 +1,27 @@
+<?php
+	require_once('php/rb-init.php');
+	
+	checkRoles([0, 1]);
+	
+	if ($_POST['phone'] || $_POST['email'] || $_POST['title_of_skills'] || $_POST['skills']) {
+		if ($_POST['phone'] || $_POST['email'] ){
+			$phone = trim ( $_POST['phone'] );
+			$email = trim ( $_POST['email'] );
+			R::exec('INSERT INTO users_dvfu_db (id, phone, email) VALUES(:id, :phone, :email) ON DUPLICATE KEY UPDATE phone = :phone, email = :email', 
+				[':id' => $logged_user['id'], ':phone' => $phone, ':email' => $email]);
+		}
+		
+		if ($_POST['title_of_skills'] || $_POST['skills']){
+			$title_of_skills = trim ( $_POST['title_of_skills'] );
+			$skills = trim ( $_POST['skills'] );
+			R::exec('INSERT INTO students (id, title_of_skills, skills) VALUES(:id, :title_of_skills, :skills) ON DUPLICATE KEY UPDATE title_of_skills = :title_of_skills, skills = :skills', 
+				[':id' => $logged_user['id'], ':title_of_skills' => $title_of_skills, ':skills' => $skills]);
+		}
+		header("Refresh:0");
+		exit('Данные пользователя сохранены');
+	}
+	require_once('php/form.php');
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -16,7 +40,7 @@
                     <div class="small-12 medium-8 large-8 cell header-title">Практика ДВФУ</div>
                     <?php
                         @include 'php/header.php';
-                        getHeaderMenu('studentMenu');
+                        getHeaderMenu($logged_user['role']);
                     ?>
                 </div>
             </div>
@@ -27,42 +51,19 @@
 
             <div class="grid-container">
                 <div class="grid-x grid-margin-x">
-                    <div class="small-12 medium-12 large-12 cell form-title">Иванов И.И.</div>
+                    <div class="small-12 medium-12 large-12 cell form-title"><?php echo $logged_user['name'];?></div>
                 </div>
             </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell">
-                    <input class="input input_blue input-largeFont" placeholder="Заголовок навыков">
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell">
-                    <input class="input input_blue input-largeFont" placeholder="Телефон">
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell">
-                    <input class="input input_blue input-largeFont" placeholder="Почта">
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-12 large-12 cell">
-                    <textarea class="input input_blue input-largeFont" placeholder="Навыки"></textarea>
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell"></div>
-                <div class="small-12 medium-4 large-4 cell">
-                    <a class="font_bold font_white">
-                        <div class="button button_blue button_radius button-padding">Сохранить</div>
-                    </a>
-                </div>
-            </div>
+			
+			<form method='post' action="" target="_parent">
+				<?php
+					getInputHTML("title_of_skills", "Заголовок навыков", "Заголовок навыков", $logged_user['title_of_skills']);
+					getInputHTML("phone", "Телефон", "Телефон", $logged_user['phone']);
+					getInputHTML("email", "Почта", "", $logged_user['email']);
+					getTextAreaHTML("skills", "Навыки", $logged_user['skills']);
+					getButtonHTML("Сохранить");
+				?>
+			</form>
         </div>
 
     <?php @include 'php/footer.php'?></body>
