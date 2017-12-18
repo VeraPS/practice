@@ -1,3 +1,6 @@
+<?php
+	require_once('php/rb-init.php');
+?>
 <html>
     <header>
         <meta charset="utf-8">

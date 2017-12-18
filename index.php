@@ -6,6 +6,7 @@
 		$pass = trim ( $_POST['pass'] );
 		$save = $_POST['save'];
 		$user_id = R::getCell('SELECT u.id FROM users_dvfu_db u WHERE u.login = :login AND u.pass = :pass', [':login' => $login, ':pass' => $pass]);
+		
 		if ($user_id) {
 			if ($save) {
 
@@ -17,8 +18,23 @@
 			$_SESSION = array();
 			$_SESSION['logged_user_id'] = $user_id;
 			
-			//затычка для теста студентов
-			goToUrl('student-personalProfile.php');
+			//временное решение
+			$load_user = loadUser($user_id);
+			switch ($load_user['role']) {
+				case 0: 
+					break;
+				case 1: 
+					goToUrl('student-personalProfile.php');
+					break;
+				case 2: 
+					break;
+				case 3: 
+					goToUrl('BP-changeBP.php');
+					break;
+				default: 
+					break;
+			}
+			
 			//=================
 		}
 		else {

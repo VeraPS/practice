@@ -34,9 +34,20 @@
 				$user["title_of_skills"] = $skills["title_of_skills"];
 				$user["skills"] = $skills["skills"];
 				break;
-			case 3: 
+			case 2: 
 				break;
 			case 3: 
+				$concern = R::getRow('SELECT * FROM concern con WHERE con.id = :id', [':id' => $logged_user_id]);
+				$user["contract_num"] = $concern["contract_num"];
+				if ($concern["contract_date"]) {
+					$user["contract_date"] = $concern["contract_date"];
+				}
+				else {
+					$user["contract_date"] = date("Y-m-d");
+				}
+				$user["description"] = $concern["description"];
+				break;
+			default: 
 				break;
 		}
 		return $user;

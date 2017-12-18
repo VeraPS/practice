@@ -6,8 +6,8 @@
 	R::setup( 'mysql:host='.$host.';dbname='.$dbName, $login, $password);
 	
 	session_start();
-	
-	if (!$_SESSION['logged_user_id']) {
+
+	if (!isset($_SESSION['logged_user_id'])) {
 		if ('/index.php' != strtolower($_SERVER['PHP_SELF'])) {
 			goToUrl('index.php');
 		}

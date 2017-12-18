@@ -47,16 +47,17 @@ DELETE FROM `coach`;
 DROP TABLE IF EXISTS `concern`;
 CREATE TABLE IF NOT EXISTS `concern` (
   `id` int(4) unsigned NOT NULL,
-  `name_conc` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `tel` varchar(64) DEFAULT NULL,
   `description` varchar(2000) DEFAULT NULL,
+  `contract_num` int(11) DEFAULT NULL,
+  `contract_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы practice_dvfu.concern: ~0 rows (приблизительно)
+-- Дамп данных таблицы practice_dvfu.concern: ~1 rows (приблизительно)
 DELETE FROM `concern`;
 /*!40000 ALTER TABLE `concern` DISABLE KEYS */;
+INSERT INTO `concern` (`id`, `description`, `contract_num`, `contract_date`) VALUES
+	(5, 'Любимый универ\r\nIf you only knew the power of the Dark Side', 1, '2099-12-31');
 /*!40000 ALTER TABLE `concern` ENABLE KEYS */;
 
 -- Дамп структуры для таблица practice_dvfu.groups_dvfu_db
@@ -132,9 +133,9 @@ CREATE TABLE IF NOT EXISTS `users_dvfu_db` (
   `login` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
   `role` int(1) NOT NULL COMMENT '0 -admin;1-students;2-coach;3-concern',
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -146,7 +147,7 @@ INSERT INTO `users_dvfu_db` (`id`, `login`, `pass`, `role`, `name`, `email`, `ph
 	(2, 'student2', '2', 1, 'Женя БВ', 'zheka@dvfu.ru', '5715872887'),
 	(3, 'coach1', '1', 2, '', '', ''),
 	(4, 'admin1', '1', 0, '', '', ''),
-	(5, 'concern1', '1', 3, '', '', '');
+	(5, 'concern1', '1', 3, 'FEFU', '', '');
 /*!40000 ALTER TABLE `users_dvfu_db` ENABLE KEYS */;
 
 -- Дамп структуры для таблица practice_dvfu.vacancy
