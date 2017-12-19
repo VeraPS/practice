@@ -58,8 +58,12 @@
 
                                     <div class="small-12 medium-12 large-12 cell ">
                                         <div class="grid-x grid-padding-x">
-                                            <div class="small-12 medium-12 large-12 cell">
-                                                <button class="button button_green button_radius font_bold font_white" type="submit" value="Submit">Принял</button>
+                                            <div class="small-12 medium-6 large-6 cell">
+                                                <button class="button button_blue button_radius font_bold font_white" type="submit" value="Submit">Изменить</button>
+                                            </div>
+                            
+                                            <div class="small-12 medium-6 large-6 cell">
+                                                <button class="button button_red button_radius font_bold font_white" type="submit" value="Submit">Удалить</button>
                                             </div>
                                         </div>
                                     </div>

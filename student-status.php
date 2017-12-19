@@ -33,7 +33,7 @@
                 </div>
                 <div class="small-12 medium-3 large-3 cell ">
                     <a class="font_bold font_white">
-                        <div class="button button_green button_radius">Принять</div>
+                        <div class="button button_green button_radius">Принята</div>
                     </a>
                 </div>
             </div>
@@ -48,50 +48,7 @@
                     </a>
                 </div>
             </div>
-
-            <div class="grid-x grid-margin-x vacant-row">
-                <div class="small-12 medium-9 large-9 cell">
-                    <p class="font_bold font_gray">PHP программист</p>
-                </div>
-                <div class="small-12 medium-3 large-3 cell ">
-                    <a class="font_bold font_white">
-                        <div class="button button_red button_radius">Отклонена</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x vacant-row">
-                <div class="small-12 medium-9 large-9 cell">
-                    <p class="font_bold font_gray">PHP программист</p>
-                </div>
-                <div class="small-12 medium-3 large-3 cell ">
-                    <a class="font_bold font_white">
-                        <div class="button button_red button_radius">Отклонена</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x vacant-row">
-                <div class="small-12 medium-9 large-9 cell">
-                    <p class="font_bold font_gray">PHP программист</p>
-                </div>
-                <div class="small-12 medium-3 large-3 cell ">
-                    <a class="font_bold font_white">
-                        <div class="button button_green button_radius">Принять</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x vacant-row">
-                <div class="small-12 medium-9 large-9 cell">
-                    <p class="font_bold font_gray">PHP программист</p>
-                </div>
-                <div class="small-12 medium-3 large-3 cell ">
-                    <a class="font_bold font_white">
-                        <div class="button button_green button_radius">Принять</div>
-                    </a>
-                </div>
-            </div>                
+       
 
         </div>
 
