@@ -1,3 +1,27 @@
+<?php
+	require_once('php/rb-init.php');
+	
+	checkRoles([0, 3]);
+	
+	if ($_POST['name'] || $_POST['contract_num'] || $_POST['contract_date'] || $_POST['description']) {
+		if ($_POST['name']){
+			$name = trim ( $_POST['name'] );
+			R::exec('UPDATE users_dvfu_db SET name = :name WHERE id = :id', 
+				[':id' => $logged_user['id'], ':name' => $name]);
+		}
+		
+		if ($_POST['contract_num'] || $_POST['contract_date'] || $_POST['description']){
+			$contract_num = trim ( $_POST['contract_num'] );
+			$contract_date = trim ( $_POST['contract_date'] );
+			$description = trim ( $_POST['description'] );
+			R::exec('INSERT INTO concern (id, contract_num, contract_date, description) VALUES(:id, :contract_num, :contract_date, :description) ON DUPLICATE KEY UPDATE contract_num = :contract_num, contract_date = :contract_date, description = :description', 
+				[':id' => $logged_user['id'], ':contract_num' => $contract_num, ':contract_date' => $contract_date, ':description' => $description]);
+		}
+		header("Refresh:0");
+		exit('Данные БП изменены');
+	}
+	require_once('php/form.php');
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -31,38 +55,16 @@
                 </div>
             </div>
 
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell">
-                    <input class="input input_blue input-largeFont" placeholder="Название предприятия">
-                </div>
-            </div>
+			<form method='post' action="" target="_parent">
+				<?php
+					getInputHTML("name", "Название предприятия", "Название предприятия", $logged_user['name']);
+					getInputHTML("contract_num", "Номер договора", "Номер договора", $logged_user['contract_num']);
+					getInputHTML("contract_date", "Срок окончания договора", "Срок окончания договора", $logged_user['contract_date']);
+					getTextAreaHTML("description", "Описание предприятия", $logged_user['description']);
+					getButtonHTML("Изменить БП");
+				?>
+			</form>
 
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell">
-                    <input class="input input_blue input-largeFont" placeholder="Номер договора">
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell">
-                    <input class="input input_blue input-largeFont" placeholder="Срок окончания договора">
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-12 large-12 cell">
-                    <textarea class="input input_blue input-largeFont" placeholder="Описание предприятия"></textarea>
-                </div>
-            </div>
-
-            <div class="grid-x grid-margin-x">
-                <div class="small-12 medium-8 large-8 cell"></div>
-                <div class="small-12 medium-4 large-4 cell">
-                    <a class="font_bold font_white">
-                        <div class="button button_blue button_radius button-padding">Изменить БП</div>
-                    </a>
-                </div>
-            </div>
         </div>
 
     <?php @include 'php/footer.php'?></body>

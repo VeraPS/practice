@@ -1,8 +1,9 @@
 <?php 
 
-    function getHeaderMenu($typeOfMenu) {
-        switch ($typeOfMenu) {
-            case 'adminMenu':
+    function getHeaderMenu() {
+		session_start();
+		switch ($_SESSION['role']) {
+            case 0: // админ
                 // echo'
                 //     <nav class="headerMenu small-12 medium-4 large-4 cel">
                 //         <ul>
@@ -28,9 +29,9 @@
                 //         </ul>
                 //     </nav>
                 // ';
-                    echo 'Я хз че у админа';
+                //    echo 'Я хз че у админа';
                 break;
-            case 'bpMenu':
+            case 3: // предприятие
                 echo'
                     <nav class="headerMenu small-12 medium-4 large-4 cel">
                         <ul>
@@ -59,7 +60,7 @@
                     </nav>
                 ';
                 break;
-            case 'studentMenu':
+            case 1: // студент
                 echo'
                     <nav class="headerMenu small-12 medium-4 large-4 cel">
                         <ul>
