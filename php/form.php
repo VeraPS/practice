@@ -30,4 +30,50 @@
         ';
     }
 
+    function getTable($result, $titleForTable) {
+
+        //Так выглядит вызов этой функции
+
+        //Ключи для построения/именования таблицы
+        // $titleForTable = array(
+        //     "id"    => "ID",
+        //     "name"  => "Название",
+        //     "email"  => "Почта",
+        //     "phone"  => "Номер телефона",
+        // );
+
+        //Вызов построителя таблицы
+        // getTable($result, $titleForTable);
+
+        $keys = array_keys($titleForTable);
+
+        if (!empty($result)){
+            echo '<div class="grid-x grid-margin-x content-container">
+                <div class="small-12 medium-12 large-12 cell content-table content-table-rowColor content-table-header">
+                <table>
+                <thead>
+                <tr>';
+            foreach($titleForTable as $index) {
+                echo '<th>',$index ,'</th>';
+            }
+            echo '</tr>
+                </thead>
+                <tbody>';
+            foreach($result as $row) {
+                echo '<tr>';
+                foreach($keys as $index) {
+                    echo '<td>',$row[$index] ,'</td>';
+                }
+                echo '</tr>';
+            }
+            echo '</tbody>
+                </table>
+                </div>
+                </div>';
+        }
+        else {
+            getError("Упс, кажется у нас нет информации по вашим данным...");
+        }
+    }
+
 ?>
