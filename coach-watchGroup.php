@@ -44,7 +44,6 @@
 
                     getButtonHTML('Найти');
 
-
                     $id_group = $_POST['groupID'];
 
                     if($id_group) {

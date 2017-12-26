@@ -54,7 +54,13 @@
     font-size: 35px;
     font-weight: bold; }
   .header-dropDown {
-    text-align: center; }
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border: 5px solid white;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold; }
   .header-text {
     font-size: 17px; }
     .header-text_right {
@@ -144,6 +150,8 @@
 .loginForm-checkBox > input {
   margin-right: 10px;
   border-radius: 120px; }
+.loginForm-hide {
+  display: none; }
 
 .headerMenu {
   width: 100%; }
