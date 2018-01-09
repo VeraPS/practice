@@ -1,3 +1,8 @@
+<?php
+    require_once('php/rb-init.php');
+    checkRoles([0]);
+
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -34,9 +39,14 @@
 
             <form action="admin-watchGroup.php" method="post">
                 <!-- Тоже захардкодил -->
+
                 <select name="groupID">
-                    <option value="1">Б8419а</option>
-                    <option value="2">Б8119а</option>
+                    <?
+                        $groups = R::getAll("SELECT * FROM groups_dvfu_db");
+                        foreach ($groups as &$group) {
+                            echo '<option value="'.$group["id_group"].'">'.$group["number"].'</option>';
+                        }
+                    ?>
                 </select>
                 <?php
                     require_once('php/rb-init.php');
@@ -54,22 +64,27 @@
 
                         $user = R::getAll("SELECT users_dvfu_db.id, users_dvfu_db.name, users_dvfu_db.phone, users_dvfu_db.email,
                                                     students_dvfu_db.id, students_dvfu_db.id_group, 
-                                                    groups_dvfu_db.id_group, groups_dvfu_db.id_coach, groups_dvfu_db.number 
+                                                    groups_dvfu_db.id_group, groups_dvfu_db.id_coach, groups_dvfu_db.number, coach_name.name coach_name 
                             FROM students_dvfu_db
                             CROSS JOIN groups_dvfu_db ON students_dvfu_db.id_group = groups_dvfu_db.id_group
                             CROSS JOIN users_dvfu_db ON students_dvfu_db.id = users_dvfu_db.id
                             CROSS JOIN coach ON coach.id = groups_dvfu_db.id_coach
-                            WHERE groups_dvfu_db.id_coach = '.$id_coach.'
-                            AND students_dvfu_db.id_group = '.$id_group.'
-                        ");
+                            LEFT JOIN users_dvfu_db coach_name ON groups_dvfu_db.id_coach = coach_name.id
+                            WHERE 
+                            1=1
+                            AND students_dvfu_db.id_group = :group
+                        ", [":group" => $id_group]);
+
+//                        var_dump($user);
+
+                        echo $user[0]["coach_name"];
 
                         $titleForTable = array(
                             "number"  => "Номер группы",
                             "name"  => "ФИО",
-                            "phone"  => "Номер телефона",
-                            "id_coach"  => "ID Руководителя"
+                            "phone"  => "Номер телефона"
+                            /*,"coach_name"  => "Руководитель"*/
                         );
-
                         getTable($user, $titleForTable);
                     }
 

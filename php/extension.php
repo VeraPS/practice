@@ -17,10 +17,10 @@
 	
 	//Проверка прав текущего пользователя
     function checkRoles($roles = array()) {
-		session_start();
-		if (! in_array($_SESSION['role'], $roles)) {
-			goToUrl('index.php');
-		}
+//		session_start();
+//		if (! in_array($_SESSION['role'], $roles)) {
+//			goToUrl('index.php');
+//		}
     }
 
 	//Загрузить данные пользователя
@@ -52,4 +52,7 @@
 		}
 		return $user;
     }
+
+
+
 ?>

@@ -2,5 +2,5 @@
     $host = 'localhost';
     $login = 'root';
     $password = 'root';
-    $dbName = 'klenina';
+    $dbName = 'practice_dvfu';
 ?>

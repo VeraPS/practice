@@ -1,3 +1,12 @@
+<?php 
+	require_once('php/rb-init.php');
+
+	$calls = R::getAll('SELECT calls.* FROM call_status calls, users_dvfu_db conc where calls.id_vacancy = :id and calls.id_conc = conc.id and conc.id = :conc_id', [':id' => $callId, ':conc_id' => $_SESSION['logged_user_id']]);
+	foreach ($calls as &$call) {
+		getButtonHTML('Принять студента '.$call["name"]);
+	}
+
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -33,7 +42,7 @@
                 </div>
                 <div class="small-12 medium-3 large-3 cell ">
                     <a class="font_bold font_white">
-                        <div class="button button_green button_radius">Принята</div>
+                        <div class="button button_green button_radius">Принять</div>
                     </a>
                 </div>
             </div>
@@ -48,7 +57,50 @@
                     </a>
                 </div>
             </div>
-       
+
+            <div class="grid-x grid-margin-x vacant-row">
+                <div class="small-12 medium-9 large-9 cell">
+                    <p class="font_bold font_gray">PHP программист</p>
+                </div>
+                <div class="small-12 medium-3 large-3 cell ">
+                    <a class="font_bold font_white">
+                        <div class="button button_red button_radius">Отклонена</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid-x grid-margin-x vacant-row">
+                <div class="small-12 medium-9 large-9 cell">
+                    <p class="font_bold font_gray">PHP программист</p>
+                </div>
+                <div class="small-12 medium-3 large-3 cell ">
+                    <a class="font_bold font_white">
+                        <div class="button button_red button_radius">Отклонена</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid-x grid-margin-x vacant-row">
+                <div class="small-12 medium-9 large-9 cell">
+                    <p class="font_bold font_gray">PHP программист</p>
+                </div>
+                <div class="small-12 medium-3 large-3 cell ">
+                    <a class="font_bold font_white">
+                        <div class="button button_green button_radius">Принять</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid-x grid-margin-x vacant-row">
+                <div class="small-12 medium-9 large-9 cell">
+                    <p class="font_bold font_gray">PHP программист</p>
+                </div>
+                <div class="small-12 medium-3 large-3 cell ">
+                    <a class="font_bold font_white">
+                        <div class="button button_green button_radius">Принять</div>
+                    </a>
+                </div>
+            </div>                
 
         </div>
 

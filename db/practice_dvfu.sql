@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 16 2017 г., 08:07
+-- Время создания: Дек 16 2017 г., 03:56
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -43,13 +43,6 @@ CREATE TABLE `coach` (
   `other_conts` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `coach`
---
-
-INSERT INTO `coach` (`id_coach`, `other_conts`) VALUES
-(3, 'Не звоните мне');
-
 -- --------------------------------------------------------
 
 --
@@ -57,13 +50,11 @@ INSERT INTO `coach` (`id_coach`, `other_conts`) VALUES
 --
 
 CREATE TABLE `concern` (
-  `login` varchar(255) NOT NULL COMMENT 'добавляется через бд админом',
-  `pass` varchar(255) NOT NULL COMMENT 'добавляется через бд админом',
   `id_conc` int(4) UNSIGNED NOT NULL,
-  `name_conc` varchar(255) DEFAULT NULL COMMENT 'добавляется через форму админом',
-  `number_dogovor` varchar(255) DEFAULT NULL COMMENT 'добавляется через форму админом',
-  `term_dogovor` date DEFAULT NULL COMMENT 'добавляется через форму админом',
-  `description` varchar(2000) DEFAULT NULL COMMENT 'добавляется через форму админом'
+  `name_conc` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `tel` varchar(64) DEFAULT NULL,
+  `description` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -84,10 +75,10 @@ CREATE TABLE `groups_dvfu_db` (
 --
 
 INSERT INTO `groups_dvfu_db` (`id_group`, `number`, `title`, `id_coach`) VALUES
-(1, 'Б8419а', 'Прикладная информатика в дизайне', 3),
-(2, 'Б8119а', 'Прикладная информатика в дизайне', 3),
-(3, 'Б8419б', 'Прикладная Информатика в экономике ', 3),
-(4, 'Б8119б', 'Прикладная информатика в экономике', 3);
+(1, 'Б8419а', 'Прикладная информатика в дизайне', 0),
+(2, 'Б8119а', 'Прикладная информатика в дизайне', 0),
+(3, 'Б8419б', 'Прикладная Информатика в экономике ', 0),
+(4, 'Б8119б', 'Прикладная информатика в экономике', 0);
 
 -- --------------------------------------------------------
 
@@ -112,14 +103,6 @@ CREATE TABLE `students_dvfu_db` (
   `id_group` int(4) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
---
--- Дамп данных таблицы `students_dvfu_db`
---
-
-INSERT INTO `students_dvfu_db` (`id_student_dvfu`, `id_group`) VALUES
-(1, 1),
-(2, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -142,7 +125,7 @@ CREATE TABLE `users_dvfu_db` (
   `id_user_dvfu` int(4) UNSIGNED NOT NULL,
   `login` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
-  `role` int(1) NOT NULL COMMENT '0 -admin;1-students;2-coach; роль предприятия определяется по наличию логина и пароля в таблице concern',
+  `role` int(1) NOT NULL COMMENT '0 -admin;1-students;2-coach;3-concern',
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `tel` varchar(255) NOT NULL
@@ -153,10 +136,11 @@ CREATE TABLE `users_dvfu_db` (
 --
 
 INSERT INTO `users_dvfu_db` (`id_user_dvfu`, `login`, `pass`, `role`, `name`, `email`, `tel`) VALUES
-(1, 'petrov.pp', '1', 1, 'Петров П.П.', 'petrov.pp@students.dvfu.ru', '111111'),
-(2, 'ivanov.ii', '2', 1, 'Иванов И.И.', 'ivanov.ii@students.dvfu.ru', '222222'),
-(3, 'klenina.nv', '1', 2, 'Кленина Н.В.', 'klenina.nv@dvfu.ru', '333333'),
-(4, 'admin1', '1', 0, 'Админ', '', '');
+(1, 'student1', '1', 1, '', '', ''),
+(2, 'student2', '2', 1, '', '', ''),
+(3, 'coach1', '1', 2, '', '', ''),
+(4, 'admin1', '1', 0, '', '', ''),
+(5, 'concern1', '1', 3, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -247,7 +231,7 @@ ALTER TABLE `vacancy`
 -- AUTO_INCREMENT для таблицы `coach`
 --
 ALTER TABLE `coach`
-  MODIFY `id_coach` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_coach` int(4) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `concern`
 --
@@ -257,7 +241,7 @@ ALTER TABLE `concern`
 -- AUTO_INCREMENT для таблицы `students_dvfu_db`
 --
 ALTER TABLE `students_dvfu_db`
-  MODIFY `id_student_dvfu` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_student_dvfu` int(4) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `users_dvfu_db`
 --

@@ -1,3 +1,7 @@
+<?php
+	require_once('php/rb-init.php');
+	checkRoles([0]);
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -34,12 +38,12 @@
             <form action="" method="post">
                 <?php
                     @include 'php/form.php';
-                    getInputHTML('name','Название предприятия','name-format');
-                    getInputHTML('number','Номер договора','name-format');
-                    getInputHTML('date','Срок окончания договора','name-format');
-                    getInputHTML('mail','Почта','name-format');
-                    getInputHTML('password','Пароль','name-format');
-                    getTextAreaHTML('describe', 'Описание предприятия');
+                    getInputHTML('name','Название предприятия','name-format','');
+                    getInputHTML('number','Номер договора','name-format','');
+                    getInputHTML('date','Срок окончания договора','name-format','');
+                    getInputHTML('mail','Почта','name-format','');
+                    getInputHTML('password','Пароль','name-format','');
+                    getTextAreaHTML('describe', 'Описание предприятия','');
                     getButtonHTML('Добавить БП');
                 ?>
             </form>

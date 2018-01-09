@@ -10,7 +10,7 @@
   .button-margin {
     margin-bottom: 30px; }
   .button_blue {
-    background-color: #2ddaff; }
+    background-color: #39cde3; }
   .button_red {
     background-color: #ed632c; }
   .button_green {
@@ -38,10 +38,10 @@
   .input_gray {
     border: 3px solid #9a969a; }
   .input_blue {
-    border: 3px solid #2ddaff; }
+    border: 3px solid #39cde3; }
 
 .header {
-  background-color: #2ddaff;
+  background-color: #39cde3;
   color: white;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -55,12 +55,16 @@
     font-weight: bold; }
   .header-dropDown {
     text-align: center;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     border: 5px solid white;
     border-radius: 20px;
     font-size: 15px;
-    font-weight: bold; }
+    font-weight: bold;
+    color: white;
+    text-decoration: none; }
+    .header-dropDown > a {
+      color: white; }
   .header-text {
     font-size: 17px; }
     .header-text_right {
@@ -94,7 +98,7 @@
   padding-bottom: 30px;
   font-size: 40px; }
   .form-title_blue {
-    color: #2ddaff; }
+    color: #39cde3; }
   .form-title_underline {
     text-decoration: underline; }
 .form-subtitle {
@@ -119,7 +123,7 @@
 .loginForm-input {
   width: 100% !important;
   border: none;
-  border-bottom: 3px #2ddaff solid; }
+  border-bottom: 3px #39cde3 solid; }
 .loginForm-row {
   margin: 10px 0 10px 0; }
 .loginForm-board {
@@ -132,7 +136,7 @@
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
 .loginForm-title {
-  color: #2ddaff; }
+  color: #39cde3; }
 .loginForm-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -144,6 +148,8 @@
   position: fixed;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.85); }
+  .loginForm-container-hide {
+    display: none; }
 .loginForm-discription {
   color: #9a969a;
   margin-bottom: 10px; }
@@ -156,11 +162,10 @@
 .headerMenu {
   width: 100%; }
   .headerMenu ul {
-    position: relative;
     margin: 0;
     padding: 0;
-    background-color: #2ddaff;
-    width: 100%;
+    background-color: #39cde3;
+    width: 200px;
     border: 3px solid white;
     border-radius: 10px; }
     .headerMenu ul li {
@@ -174,7 +179,7 @@
     .headerMenu ul ul {
       display: none;
       position: absolute;
-      background-color: #2ddaff;
+      background-color: #39cde3;
       margin-top: 10px;
       margin-left: -10px; }
     .headerMenu ul a {

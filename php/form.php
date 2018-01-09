@@ -20,6 +20,7 @@
         ';
     }
 
+	
     function getButtonHTML($name) {
         echo'
             <div class="grid-x grid-margin-x">
@@ -49,30 +50,30 @@
 
         if (!empty($result)){
             echo '<div class="grid-x grid-margin-x content-container">
-                <div class="small-12 medium-12 large-12 cell content-table content-table-rowColor content-table-header">
-                <table>
-                <thead>
-                <tr>';
-            foreach($titleForTable as $index) {
+                    <div class="small-12 medium-12 large-12 cell content-table content-table-rowColor content-table-header">
+                    <table>
+                    <thead>
+                    <tr>';
+            foreach($titleForTable as &$index) {
                 echo '<th>',$index ,'</th>';
             }
             echo '</tr>
-                </thead>
-                <tbody>';
-            foreach($result as $row) {
+                    </thead>
+                    <tbody>';
+            foreach($result as &$row) {
                 echo '<tr>';
-                foreach($keys as $index) {
+                foreach($keys as &$index) {
                     echo '<td>',$row[$index] ,'</td>';
                 }
                 echo '</tr>';
             }
             echo '</tbody>
-                </table>
-                </div>
-                </div>';
+                    </table>
+                    </div>
+                    </div>';
         }
         else {
-            getError("Упс, кажется у нас нет информации по вашим данным...");
+//            getError("Упс, кажется у нас нет информации по вашим данным...");
         }
     }
 

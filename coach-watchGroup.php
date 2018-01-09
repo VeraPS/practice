@@ -1,3 +1,8 @@
+<?php
+    require_once('php/rb-init.php');
+    checkRoles([2]);
+
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -32,11 +37,16 @@
             </div>
 
 
-            <form action="admin-watchGroup.php" method="post">
+            <form action="coach-watchGroup.php" method="post">
                 <!-- Тоже захардкодил -->
                 <select name="groupID">
-                    <option value="1">Б8419а</option>
-                    <option value="2">Б8119а</option>
+                    <?
+                    $id_coach = $logged_user["id"];
+                    $groups = R::getAll("SELECT * FROM groups_dvfu_db WHERE id_coach=:coach", [":coach" => $id_coach]);
+                    foreach ($groups as &$group) {
+                        echo '<option value="'.$group["id_group"].'">'.$group["number"].'</option>';
+                    }
+                    ?>
                 </select>
                 <?php
                     require_once('php/rb-init.php');
@@ -49,21 +59,23 @@
                     if($id_group) {
                         
                         //Захардкодил преподавателя
-                        $id_coach = 0;
 
-                        $user = R::getAll("SELECT users_dvfu_db.id, users_dvfu_db.name, users_dvfu_db.phone, users_dvfu_db.email ,students_dvfu_db.id, students_dvfu_db.id_group, groups_dvfu_db.id_group, groups_dvfu_db.id_coach, groups_dvfu_db.number FROM students_dvfu_db
+                        $user = R::getAll("SELECT users_dvfu_db.id, users_dvfu_db.name, users_dvfu_db.phone, users_dvfu_db.email ,students_dvfu_db.id, students_dvfu_db.id_group, groups_dvfu_db.id_group, groups_dvfu_db.id_coach, groups_dvfu_db.number, vac.title vac_title FROM students_dvfu_db
                             CROSS JOIN groups_dvfu_db ON students_dvfu_db.id_group = groups_dvfu_db.id_group
                             CROSS JOIN users_dvfu_db ON students_dvfu_db.id = users_dvfu_db.id
-                            WHERE groups_dvfu_db.id_coach = '.$id_coach.'
-                            AND students_dvfu_db.id_group = '.$id_group.'
-                        ");
+                            LEFT JOIN call_status calls ON students_dvfu_db.id = calls.id_student
+                            LEFT JOIN vacancy vac ON calls.id_vacancy = vac.id
+                            WHERE students_dvfu_db.id_group = :group
+                            AND calls.call_status = 1
+                        ", [":group" => $id_group]);
 
                         $titleForTable = array(
-                            "number"  => "Номер группы",
+
                             "name"  => "ФИО",
                             "phone"  => "Номер телефона",
+                            "vac_title"  => "Вакансия",
                         );
-
+/*                        echo $logged_user["name"];*/
                         getTable($user, $titleForTable);
                     }
 

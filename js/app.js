@@ -1,7 +1,7 @@
 
 
 clickOnRowBP();
-hideLoginScreen();
+loginWindow();
 
 
 function clickOnRowBP() {
@@ -11,9 +11,9 @@ function clickOnRowBP() {
     })
 }
 
-function hideLoginScreen() {
-    $('.loginForm-container').click(function(e) {
+function loginWindow() {
+    $('#login').click(function(e) {
         e.preventDefault();
-        $('.loginForm-container').toggleClass("loginForm-hide");
+        $('.loginForm-container').toggleClass("loginForm-container-hide");
     })
 }
