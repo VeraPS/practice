@@ -1,3 +1,12 @@
+<?php 
+	require_once('php/rb-init.php');
+
+	$calls = R::getAll('SELECT calls.* FROM call_status calls, users_dvfu_db conc where calls.id_vacancy = :id and calls.id_conc = conc.id and conc.id = :conc_id', [':id' => $callId, ':conc_id' => $_SESSION['logged_user_id']]);
+	foreach ($calls as &$call) {
+		getButtonHTML('Принять студента '.$call["name"]);
+	}
+
+?>
 <html>
     <header>
         <meta charset="utf-8">

@@ -1,3 +1,7 @@
+<?php
+	require_once('php/rb-init.php');
+	checkRoles([0]);
+?>
 <html>
     <head>
         <meta charset="utf-8">

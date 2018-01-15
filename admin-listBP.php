@@ -1,3 +1,13 @@
+<?php
+	require_once('php/rb-init.php');
+	checkRoles([0]);
+
+    $search ='%%';
+
+    if (isset($_POST["search"])){
+        $search ='%'.trim($_POST["search"]).'%';
+    }
+?>
 <html>
     <header>
         <meta charset="utf-8">
@@ -22,67 +32,72 @@
             </div>
         </div>
 
-        <div class="grid-container">
-            <input class="vacant-search" placeholder="Поиск">
-        </div>
+        <form method='post' action="" name="searchform" target="_parent">
+            <div class="grid-container">
+                <input name="search" value="<? echo $_POST["search"];?>" class="vacant-search" placeholder="Поиск">
+            </div>
+        </form>
 
         <div class="grid-container">
             
             <?php
-                for ($i = 1; $i <= 10; $i++) {
+                $Concs = R::getAll("SELECT udb.name, udb.id uid, conc.* FROM users_dvfu_db udb LEFT JOIN concern conc ON udb.id = conc.id WHERE udb.role = 3 and udb.name like :search", [":search" => $search]);
+                foreach ($Concs as &$conc) {
                 echo'
                     <div class="vacant-container">
-                        <div class="grid-x grid-padding-x vacant-row vacant-header">
+                        <div class="grid-x grid-padding-x vacant-row ">
                         <!-- Заголовок -->
                         
                             <div class="small-12 medium-6 large-6 cell">
-                                <p class="font_bold font_gray">farpost.ru</p>
+                                <p class="font_bold font_gray">'.$conc["name"].'</p>
                             </div>
             
-                            <div class="small-12 medium-3 large-3 cell vacant-content">
-                                <button class="button button_blue button_radius font_bold font_white" type="submit" value="Submit">Изменить</button>
-                            </div>
+                            <a class="small-12 medium-3 large-3 cell vacant-content" href="BP-changeBP.php?id=' . $conc["uid"] . '">
+                                
+                                    <button class="button button_blue button_radius font_bold font_white" type="submit" value="Submit">Изменить</button>
+                                
+                            </a>
             
-                            <div class="small-12 medium-3 large-3 cell vacant-content">
+                            <a class="small-12 medium-3 large-3 cell vacant-content" href="BP-del.php?id=' . $conc["uid"] . '">
                                 <button class="button button_red button_radius font_bold font_white" type="submit" value="Submit">Удалить</button>
-                            </div>
-                        </div>
+                            </a>
+                        </div>'
 
-                        <!-- Контент -->
-                        <div class="vacant-content vacant-content-hide">
-                            <div class="grid-x grid-padding-x vacant-row_small ">
-                                <div class="small-12 medium-9 large-9 cell ">
-                                    <p class="font_bold font_gray">PHP программист</p>
-                                </div>
+//                        .'<!-- Контент -->
+//                        <div class="vacant-content vacant-content-hide">
+//                            <div class="grid-x grid-padding-x vacant-row_small ">
+//                                <div class="small-12 medium-9 large-9 cell ">
+//                                    <p class="font_bold font_gray">PHP программист</p>
+//                                </div>
+//
+//                                <div class="small-12 medium-3 large-3 cell ">
+//                                    <button class="button button_red button_radius font_bold font_white" type="submit" value="Submit">Удалить</button>
+//                                </div>
+//
+//                            </div>
+//
+//
+//                            <div class="grid-x grid-padding-x vacant-row_small">
+//                                <div class="small-12 medium-9 large-9 cell ">
+//                                    <p class="font_bold font_gray">HTML/CSS</p>
+//                                </div>
+//
+//                                <div class="small-12 medium-3 large-3 cell ">
+//                                    <button class="button button_red button_radius font_bold font_white" type="submit" value="Submit">Удалить</button>
+//                                </div>
+//                            </div>
+//
+//                            <div class="grid-x grid-padding-x vacant-row_small">
+//
+//                                <div class="small-12 medium-4 large-4 cell ">
+//                                    <button class="button button_blue button_radius font_white" type="submit" value="Submit">Добавить вакансию</button>
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>'
 
-                                <div class="small-12 medium-3 large-3 cell ">
-                                    <button class="button button_red button_radius font_bold font_white" type="submit" value="Submit">Удалить</button>
-                                </div>
-
-                            </div>
-
-
-                            <div class="grid-x grid-padding-x vacant-row_small">
-                                <div class="small-12 medium-9 large-9 cell ">
-                                    <p class="font_bold font_gray">HTML/CSS</p>
-                                </div>
-
-                                <div class="small-12 medium-3 large-3 cell ">
-                                    <button class="button button_red button_radius font_bold font_white" type="submit" value="Submit">Удалить</button>
-                                </div>
-                            </div>
-
-                            <div class="grid-x grid-padding-x vacant-row_small">
-
-                                <div class="small-12 medium-4 large-4 cell ">
-                                    <button class="button button_blue button_radius font_white" type="submit" value="Submit">Добавить вакансию</button>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>';
+                    .'</div>';
                 }
             ?>
 

@@ -7,45 +7,6 @@
         $search ='%'.trim($_POST["search"]).'%';
     }
 
-	if (($_POST['login']) && ($_POST['pass'])){
-		$login = trim ( $_POST['login'] );
-		$pass = trim ( $_POST['pass'] );
-		$save = $_POST['save'];
-		$user_id = R::getCell('SELECT u.id FROM users_dvfu_db u WHERE u.login = :login AND u.pass = :pass', [':login' => $login, ':pass' => $pass]);
-		
-		if ($user_id) {
-			$_SESSION = array();
-			$_SESSION['logged_user_id'] = $user_id;
-			
-    		$load_user = loadUser($user_id);
-
-            if ($save) {
-                setcookie('user', $user_id.':'.md5($load_user['pass']), time() + 60 * 60 * 24 * 30);
-            }
-
-			switch ($load_user['role']) {
-				case 0: 
-					goToUrl("admin-mainPage.php");
-					break;
-				case 1: 
-					goToUrl('student-personalProfile.php');
-					break;
-				case 2:
-                    goToUrl('index.php');
-					break;
-				case 3: 
-					goToUrl('index.php');
-					break;
-				default: 
-					break;
-			}
-			
-			//=================
-		}
-		else {
-			getAlert('Зарегестрируйтесь в системе ДВФУ');
-		}
-	}
 ?>
 
 <html>
@@ -70,7 +31,7 @@
 					<h2 class="loginForm-title">Практики ДВФУ</h2>
 
 					<div class="small-12 medium-12 large-12 cell loginForm-row">
-                        <p class="loginForm-discription"><b>Если вы не можете войти в свой аккаунт, обратитесь к администратору своей образовательной программы</b></p>
+						<p class="loginForm-discription">Если вы не можете войти в свой аккаунт, обратитесь к администратору своей образовательной программы</p>
 					</div>
 
 					<div class="small-12 medium-12 large-12 cell loginForm-row">
@@ -85,7 +46,7 @@
 
 					<p class="loginForm-discription loginForm-checkBox"><input type="checkbox"  name='save'>Запомнить меня</p>
 					<div class="large-offset-9 large-3 cell">
-						<input class="button button-padding button-blue small-4 medium-4 large-4" type='submit' class="secondary button" name='submit' value='Войти'>
+						<input class="button button-padding button-blue" type='submit' class="secondary button" name='submit' value='Войти'>
 					</div>
 
 				</div>
@@ -133,22 +94,19 @@
     </form>
 
 	<?php
-		$vacancy = R::getAll('SELECT vac.*, us.name FROM vacancy vac, concern con, users_dvfu_db us where vac.id_conc = con.id and vac.id_conc = us.id and (vac.title like :search or us.name like :search)', [":search" => $search]);
-		if ($_SESSION['role'] == 3) {
-			$vacancy = R::getAll('SELECT vac.*, us.name FROM vacancy vac, concern con, users_dvfu_db us where vac.id_conc = con.id and vac.id_conc = us.id and vac.id_conc = :id and (vac.title like :search or us.name like :search)', [":search" => $search, ':id' => $_SESSION['logged_user_id']]);
-		}
-		foreach ($vacancy as &$vac) {
+		$students = R::getAll('SELECT users.*, st.skills FROM users_dvfu_db users LEFT JOIN students st ON users.id = st.id WHERE users.role = 1 and (users.name like :search or st.skills like :search)', [":search" => $search]);;
+		foreach ($students as &$stud) {
 			echo 
 				'<div class="grid-container">
 				<div class="grid-x grid-margin-x vacant-row">
 					<div class="small-12 medium-4 large-4 cell">
-						<p class="font_bold font_gray">'.$vac["name"].'</p>
+						<p class="font_bold font_gray">'.$stud["name"].'</p>
 					</div>
 					<div class="small-12 medium-5 large-5 cell">
-						<p class="font_bold font_gray">'.$vac["title"].'</p>
+						<p class="font_bold font_gray">'.htmlentities($stud["skills"]).'</p>
 					</div>
 					<div class="small-12 medium-3 large-3 cell ">
-						<a class="font_bold font_white" href="vac-page.php?id='.$vac["id"].'">
+						<a class="font_bold font_white" href="student-personalProfile.php?student='.$stud["id"].'">
 							<div class="button button_blue button_radius">Перейти</div>
 						</a>
 					</div>

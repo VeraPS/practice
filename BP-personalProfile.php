@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <div class="small-12 medium-6 large-6 cell">
-                    <a class="font_bold font_white">
+                    <a class="font_bold font_white" href="BP-changeBP.php">
                         <div class="button button_blue button_radius button-padding button-margin">Изменить БП</div>
                     </a>
                 </div>
