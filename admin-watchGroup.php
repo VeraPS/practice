@@ -43,7 +43,7 @@
                 <select name="groupID">
                     <?
                         $groups = R::getAll("SELECT * FROM groups_dvfu_db");
-                        foreach ($groups as &$group) {
+                        foreach ($groups as $group) {
                             echo '<option value="'.$group["id_group"].'">'.$group["number"].'</option>';
                         }
                     ?>
@@ -59,31 +59,24 @@
 
                     if($id_group) {
                         
-                        //Захардкодил преподавателя
-                        $id_coach = 0;
 
-                        $user = R::getAll("SELECT users_dvfu_db.id, users_dvfu_db.name, users_dvfu_db.phone, users_dvfu_db.email,
-                                                    students_dvfu_db.id, students_dvfu_db.id_group, 
-                                                    groups_dvfu_db.id_group, groups_dvfu_db.id_coach, groups_dvfu_db.number, coach_name.name coach_name 
-                            FROM students_dvfu_db
-                            CROSS JOIN groups_dvfu_db ON students_dvfu_db.id_group = groups_dvfu_db.id_group
-                            CROSS JOIN users_dvfu_db ON students_dvfu_db.id = users_dvfu_db.id
-                            CROSS JOIN coach ON coach.id = groups_dvfu_db.id_coach
-                            LEFT JOIN users_dvfu_db coach_name ON groups_dvfu_db.id_coach = coach_name.id
-                            WHERE 
-                            1=1
-                            AND students_dvfu_db.id_group = :group
+                        $user = R::getAll("
+                            select users.name, users.phone, vac.title
+                            from students_dvfu_db stdvfu
+                            left join users_dvfu_db users on users.id = stdvfu.id
+                            left join (select * from call_status where call_status = 1) calls on calls.id_student = stdvfu.id
+                            left join vacancy vac on vac.id = calls.id_vacancy
+                            where stdvfu.id_group = :group
                         ", [":group" => $id_group]);
 
 //                        var_dump($user);
 
-                        echo $user[0]["coach_name"];
+                        echo R::getCell("select users.name from users_dvfu_db users, groups_dvfu_db grs where users.id = grs.id_coach and grs.id_group = :group", [":group" => $id_group]);
 
                         $titleForTable = array(
-                            "number"  => "Номер группы",
                             "name"  => "ФИО",
                             "phone"  => "Номер телефона"
-                            /*,"coach_name"  => "Руководитель"*/
+                            ,"title"  => "Вакансия"
                         );
                         getTable($user, $titleForTable);
                     }

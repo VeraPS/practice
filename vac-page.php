@@ -88,6 +88,9 @@
         <link href="css/style.css" rel="stylesheet">
     </header>
     <body>
+
+        <? include("php/login.php"); ?>
+
         <div class="header">
             <div class="grid-container">
                 <div class="grid-x grid-margin-x">

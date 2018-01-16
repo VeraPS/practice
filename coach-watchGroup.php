@@ -60,20 +60,20 @@
                         
                         //Захардкодил преподавателя
 
-                        $user = R::getAll("SELECT users_dvfu_db.id, users_dvfu_db.name, users_dvfu_db.phone, users_dvfu_db.email ,students_dvfu_db.id, students_dvfu_db.id_group, groups_dvfu_db.id_group, groups_dvfu_db.id_coach, groups_dvfu_db.number, vac.title vac_title FROM students_dvfu_db
-                            CROSS JOIN groups_dvfu_db ON students_dvfu_db.id_group = groups_dvfu_db.id_group
-                            CROSS JOIN users_dvfu_db ON students_dvfu_db.id = users_dvfu_db.id
-                            LEFT JOIN call_status calls ON students_dvfu_db.id = calls.id_student
-                            LEFT JOIN vacancy vac ON calls.id_vacancy = vac.id
-                            WHERE students_dvfu_db.id_group = :group
-                            AND calls.call_status = 1
+                        $user = R::getAll("
+                            select users.name, users.phone, vac.title
+                            from students_dvfu_db stdvfu
+                            left join users_dvfu_db users on users.id = stdvfu.id
+                            left join (select * from call_status where call_status = 1) calls on calls.id_student = stdvfu.id
+                            left join vacancy vac on vac.id = calls.id_vacancy
+                            where stdvfu.id_group = :group
                         ", [":group" => $id_group]);
 
                         $titleForTable = array(
 
                             "name"  => "ФИО",
                             "phone"  => "Номер телефона",
-                            "vac_title"  => "Вакансия",
+                            "title"  => "Вакансия",
                         );
 /*                        echo $logged_user["name"];*/
                         getTable($user, $titleForTable);
