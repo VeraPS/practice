@@ -27,6 +27,7 @@
                 if (R::getRow("SELECT * FROM users_dvfu_db WHERE login=:login", [':login' => $login])) {
                     header("Refresh:0");
                     getAlert("Логин уже существует");
+                    exit();
                 }
                 R::exec('INSERT INTO users_dvfu_db (login, pass, name, email, role) VALUES (:login, :pass, :name, :email, 3)', [':login' => $login, ':pass' => $pass, ':name' => $name, ':email' => $email]);
                 $newID = R::getInsertID();

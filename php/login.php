@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="small-12 medium-12 large-12 cell loginForm-row">
-                    <p class="loginForm-discription">Email</p>
+                    <p class="loginForm-discription">Логин единой учётной записи ДВФУ</p>
                     <input class="loginForm-input" type="text" name='login'>
                 </div>
 

@@ -51,7 +51,8 @@
             }
             else {
                 header("Refresh:0");
-//                exit("Не заполнено название вакансии");
+                getAlert("Не заполнено название вакансии");
+                exit();
             }
         }
     }
@@ -67,6 +68,7 @@
         if (!$title) {
             header("Refresh:0");
             getAlert('Пустое название вакансии');
+            exit();
         }
 		
 		R::exec('UPDATE vacancy SET title=:title, address=:address, conditions=:conditions, description=:description WHERE id=:id', [':id' => $vac['id'], ':title' => $title, ':address' => $address, ':conditions' => $conditions, ':description' => $description]);
